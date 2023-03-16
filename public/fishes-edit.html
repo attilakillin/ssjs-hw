@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fish Racing Leaderboards</title>
+
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-indigo-50 text-gray-700 font-['Inter'] font-light">
+    <!-- Generic header -->
+    <header class="mb-4">
+        <nav class="flex items-center px-6 py-4">
+            <div class="flex gap-x-6 mr-auto">
+                <a href="/index.html"        class="bg-gray-700 text-indigo-50 hover:outline hover:outline-3 hover:outline-gray-700 px-8 py-3 text-lg">Fishes</a>
+                <a href="/leaderboards.html" class="hover:outline hover:outline-3 hover:outline-gray-700 px-8 py-3 text-lg">Leaderboards</a>
+            </div>
+            <div class="text-lg italic">
+                Fish Racing Leaderboards
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main content -->
+    <div class="container mx-auto">
+        <!-- Header row -->
+        <h1 class="text-3xl mb-4">Edit fish</h1>
+
+        <!-- Main table listing the properties of a fish -->
+        <table class="table-fixed w-full border-collapse">
+            <tr>
+                <th class="border-b-4 border-indigo-50 px-4 py-4 bg-gray-700 text-indigo-50">Nickname</th>
+                <td class="pl-3"><input class="block w-full px-4 py-3 bg-indigo-50" value="Béla"></td>
+            </tr>
+            <tr>
+                <th class="border-y-4 border-indigo-50 px-4 py-4 bg-gray-700 text-indigo-50">Type</th>
+                <td class="pl-3"><input class="block w-full px-4 py-3 bg-indigo-50" value="Tőkehal"></td>
+            </tr>
+            <tr>
+                <th class="border-y-4 border-indigo-50 px-4 py-4 bg-gray-700 text-indigo-50">Weight</th>
+                <td class="pl-3"><input class="block w-full px-4 py-3 bg-indigo-50" value="25 kg"></td>
+            </tr>
+            <tr>
+                <th class="border-t-4 border-indigo-50 px-4 py-4 bg-gray-700 text-indigo-50">Length</th>
+                <td class="pl-3"><input class="block w-full px-4 py-3 bg-indigo-50" value="0.78 m"></td>
+            </tr>
+        </table>
+
+
+        <!-- 'Cancel' and 'Save' buttons below the table -->
+        <div class="flex flex-row justify-end mt-4">
+            <a href="/index.html" class="hover:outline hover:outline-2 hover:outline-gray-700 px-8 py-3 mr-4 text-lg">Cancel</button>
+            <a href="/index.html" class="hover:outline hover:outline-2 hover:outline-gray-700 px-8 py-3 text-lg">Save</button>
+        </div>
+    </div>
+</body>
+</html>
