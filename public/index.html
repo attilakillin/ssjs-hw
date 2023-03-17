@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,17 +34,20 @@
         <!-- Header row -->
         <div class="flex flex-row mb-4">
             <h1 class="basis-3/4 text-3xl">Registered fishes</h1>
-            <input class="basis-1/4 text-lg placeholder:italic placeholder:text-gray-400 border border-gray-300 px-2" placeholder="Filter">
+            <div class="basis-1/4 flex">
+                <input class="text-lg placeholder:italic placeholder:text-gray-400 border border-gray-300 px-2" type="text" placeholder="Enter text...">
+                <button class="bg-gray-700 text-indigo-50 hover:outline hover:outline-3 hover:outline-gray-700 px-8 py-1 text-lg">Filter</button>
+            </div>
         </div>
 
         <!-- Main table listing the registered fishes -->
         <table class="table-fixed w-full border-collapse">
             <thead>
                 <tr>
-                    <th class="border-r-4 border-indigo-50 px-4 py-2 bg-gray-700 text-indigo-50">Nickname</th>
-                    <th class="border-x-4 border-indigo-50 px-4 py-2 bg-gray-700 text-indigo-50">Type</th>
-                    <th class="border-x-4 border-indigo-50 px-4 py-2 bg-gray-700 text-indigo-50">Weight</th>
-                    <th class="border-l-4 border-indigo-50 px-4 py-2 bg-gray-700 text-indigo-50">Length</th>
+                    <th class="border-r-4 border-indigo-50 px-4 py-2 bg-gray-700 text-indigo-50" scope="col">Nickname</th>
+                    <th class="border-x-4 border-indigo-50 px-4 py-2 bg-gray-700 text-indigo-50" scope="col">Type</th>
+                    <th class="border-x-4 border-indigo-50 px-4 py-2 bg-gray-700 text-indigo-50" scope="col">Weight</th>
+                    <th class="border-l-4 border-indigo-50 px-4 py-2 bg-gray-700 text-indigo-50" scope="col">Length</th>
                 </tr>
             </thead>
             <tbody>
@@ -117,7 +120,7 @@
 
         <!-- 'Add new' button below the table -->
         <div class="flex flex-row justify-center mt-4">
-            <a href="/fishes-edit.html" class="hover:outline hover:outline-2 hover:outline-gray-700 px-8 py-3 text-lg">Add new</button>
+            <a href="/fishes-edit.html" class="hover:outline hover:outline-3 hover:outline-gray-700 px-8 py-3 text-lg">Add new</a>
         </div>
     </div>
 </body>
