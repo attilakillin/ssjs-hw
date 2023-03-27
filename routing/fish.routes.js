@@ -3,6 +3,7 @@ const loadManyFish  = require('../middleware/fish/loadManyFish.mw');
 const loadOneFish   = require('../middleware/fish/loadOneFish.mw');
 const saveOneFish   = require('../middleware/fish/saveOneFish.mw');
 
+const handleErrors  = require('../middleware/handleErrors.mw');
 const redirect      = require('../middleware/redirect.mw');
 const render        = require('../middleware/render.mw');
 
@@ -25,22 +26,26 @@ module.exports = function(app) {
     /** Save a new fish, and redirect the user. */
     app.post('/fish/new',
         saveOneFish(repo),
+        handleErrors(repo),
         redirect(repo, '/fish'));
 
     /** Load the edit existing fish view (populates the editing fields). */
     app.get('/fish/edit/:id',
         loadOneFish(repo),
+        handleErrors(repo),
         render(repo, 'fish-edit'));
 
     /** Update an existing fish, and redirect the user. */
     app.post('/fish/edit/:id',
         loadOneFish(repo),
         saveOneFish(repo),
+        handleErrors(repo),
         redirect(repo, '/fish'));
 
     /** Delete an existing fish, and redirect the user back. */
     app.get('/fish/delete/:id',
         loadOneFish(repo),
         deleteOneFish(repo),
+        handleErrors(repo),
         redirect(repo, '/fish'));
 }
