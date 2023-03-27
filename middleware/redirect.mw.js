@@ -8,6 +8,6 @@
  */
 module.exports = function (repo, target) {
     return (req, res, next) => {
-        res.redirect(target);
+        return res.redirect(target);
     };
 }

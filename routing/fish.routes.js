@@ -3,8 +3,8 @@ const loadManyFish  = require('../middleware/fish/loadManyFish.mw');
 const loadOneFish   = require('../middleware/fish/loadOneFish.mw');
 const saveOneFish   = require('../middleware/fish/saveOneFish.mw');
 
-const redirect      = require('./middleware/redirect.mw');
-const render        = require('./middleware/render.mw');
+const redirect      = require('../middleware/redirect.mw');
+const render        = require('../middleware/render.mw');
 
 /**
  * Creates the routes used by the /fish path and its subpaths.
@@ -13,7 +13,7 @@ const render        = require('./middleware/render.mw');
 module.exports = function(app) {
     const repo = {};
 
-    /** Load fish list view. */
+    /** Load fish list view (with an optional query-based filtering). */
     app.get('/fish', 
         loadManyFish(repo),
         render(repo, 'fish'));
