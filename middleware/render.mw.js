@@ -8,6 +8,6 @@
  */
 module.exports = function (repo, view) {
     return (req, res, next) => {
-        res.render(view);
+        res.render(view, res.locals);
     };
 }

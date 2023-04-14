@@ -10,6 +10,10 @@
  */
 module.exports = function (repo) {
     return (req, res, next) => {
-        return res.render('to be defined');
+        if (typeof res.errors !== 'undefined') {
+            return res.render('to be defined');
+        } else {
+            return next();
+        }
     };
 }

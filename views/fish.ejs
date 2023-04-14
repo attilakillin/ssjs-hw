@@ -1,0 +1,53 @@
+<%# Used templating variables: fishList %>
+<%- include('components/header', {active: 'fish'}) %>
+
+<!-- Main content -->
+<div class="container mx-auto">
+    <!-- Header row -->
+    <div class="flex flex-row mb-4">
+        <h1 class="basis-3/4 text-3xl">Registered fish</h1>
+        <div class="basis-1/4 flex">
+            <input class="text-lg placeholder:italic placeholder:text-gray-400 border border-gray-300 px-2" type="text" placeholder="Enter text...">
+            <button class="bg-gray-700 text-indigo-50 hover:outline hover:outline-3 hover:outline-gray-700 px-8 py-1 text-lg">Filter</button>
+        </div>
+    </div>
+
+    <!-- Main table listing the registered fish -->
+    <table class="table-fixed w-full border-collapse">
+        <thead>
+            <tr>
+                <th class="border-r-4 border-indigo-50 px-4 py-2 bg-gray-700 text-indigo-50" scope="col">Nickname</th>
+                <th class="border-x-4 border-indigo-50 px-4 py-2 bg-gray-700 text-indigo-50" scope="col">Type</th>
+                <th class="border-x-4 border-indigo-50 px-4 py-2 bg-gray-700 text-indigo-50" scope="col">Weight</th>
+                <th class="border-l-4 border-indigo-50 px-4 py-2 bg-gray-700 text-indigo-50" scope="col">Length</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% fishList.forEach(f => { %>
+                <tr class="border-b border-gray-700 hover:bg-indigo-100">
+                    <td class="px-4 py-4"><%= f.name %></td>
+                    <td class="px-4 py-4"><%= f.type %></td>
+                    <td class="px-4 py-4"><%= f.weight %></td>
+                    <td class="px-4 py-4">
+                        <div class="flex">
+                            <div class="flex-grow"><%= f.length %></div>
+                            <a href="/fish/edit/<%= f.id %>" class="mx-2">
+                                <i class="text-gray-700 fa fa-pen"></i>
+                            </a>
+                            <a href="/fish/delete/<%= f.id %>" class="mx-2">
+                                <i class="text-gray-700 fa fa-trash"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+    <!-- 'Add new' button below the table -->
+    <div class="flex flex-row justify-center mt-4">
+        <a href="/fish/new" class="hover:outline hover:outline-3 hover:outline-gray-700 px-8 py-3 text-lg">Add new</a>
+    </div>
+</div>
+
+<%- include('components/footer') %>

@@ -1,0 +1,56 @@
+<%# Used templating variables: resultList %>
+<%- include('components/header', {active: 'leaderboards'}) %>
+
+<!-- Main content -->
+<div class="container mx-auto">
+    <!-- Header row -->
+    <div class="flex flex-row mb-4">
+        <h1 class="basis-3/4 text-3xl">Leaderboards</h1>
+        <div class="basis-1/4 flex">
+            <input class="text-lg placeholder:italic placeholder:text-gray-400 border border-gray-300 px-2" type="text" placeholder="Enter text...">
+            <button class="bg-gray-700 text-indigo-50 hover:outline hover:outline-3 hover:outline-gray-700 px-8 py-1 text-lg">Filter</button>
+        </div>
+    </div>
+
+
+    <!-- Main table listing the leaderboard results -->
+    <table class="table-fixed w-full border-collapse">
+        <thead>
+            <tr>
+                <th class="border-r-4 border-indigo-50 px-4 py-2 bg-gray-700 text-indigo-50" scope="col">Race</th>
+                <th class="border-x-4 border-indigo-50 px-4 py-2 bg-gray-700 text-indigo-50" scope="col">Winner</th>
+                <th class="border-x-4 border-indigo-50 px-4 py-2 bg-gray-700 text-indigo-50" scope="col">Time</th>
+                <th class="border-x-4 border-indigo-50 px-4 py-2 bg-gray-700 text-indigo-50" scope="col">Loser</th>
+                <th class="border-l-4 border-indigo-50 px-4 py-2 bg-gray-700 text-indigo-50" scope="col">Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% resultList.forEach(r => { %>
+                <tr class="border-b border-gray-700 hover:bg-indigo-100">
+                    <td class="px-4 py-4"><%= r.race %></td>
+                    <td class="px-4 py-4"><%= r.winner.name %></td>
+                    <td class="px-4 py-4"><%= r.winner.time %></td>
+                    <td class="px-4 py-4"><%= r.loser.name %></td>
+                    <td class="px-4 py-4">
+                        <div class="flex">
+                            <div class="flex-grow"><%= r.loser.time %></div>
+                            <a href="/leaderboards/edit/<%= r.id %>" class="mx-2">
+                                <i class="text-gray-700 fa fa-pen"></i>
+                            </a>
+                            <a href="/leaderboards/delete/<%= r.id %>" class="mx-2">
+                                <i class="text-gray-700 fa fa-trash"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+    <!-- 'Add new' button below the table -->
+    <div class="flex flex-row justify-center mt-4">
+        <a href="/leaderboards/new" class="hover:outline hover:outline-3 hover:outline-gray-700 px-8 py-3 text-lg">Add new</a>
+    </div>
+</div>
+
+<%- include('components/footer') %>

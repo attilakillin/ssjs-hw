@@ -3,7 +3,9 @@ const loadManyResults   = require('../middleware/leaderboards/loadManyResults.mw
 const loadOneResult     = require('../middleware/leaderboards/loadOneResult.mw');
 const saveOneResult     = require('../middleware/leaderboards/saveOneResult.mw');
 
-const handleErrors  = require('../middleware/handleErrors.mw');
+const loadManyFish      = require('../middleware/fish/loadManyFish.mw');
+
+const handleErrors      = require('../middleware/handleErrors.mw');
 const redirect          = require('../middleware/redirect.mw');
 const render            = require('../middleware/render.mw');
 
@@ -21,6 +23,7 @@ module.exports = function(app) {
 
     /** Load the edit new result view (without populating the editing fields). */
     app.get('/leaderboards/new',
+        loadManyFish(repo),
         render(repo, 'leaderboards-edit'));
 
     /** Save a new result, and redirect the user. */
@@ -31,6 +34,7 @@ module.exports = function(app) {
 
     /** Load the edit existing result view (populates the editing fields). */
     app.get('/leaderboards/edit/:id',
+        loadManyFish(repo),
         loadOneResult(repo),
         handleErrors(repo),
         render(repo, 'leaderboards-edit'));

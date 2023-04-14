@@ -7,6 +7,12 @@
  */
 module.exports = function (repo) {
     return (req, res, next) => {
+        res.locals.fish = {
+            name: 'Béla',
+            type: 'Tőkehal',
+            weight: '25 kg',
+            length: '74 cm'
+        };
         return next();
     };
 }

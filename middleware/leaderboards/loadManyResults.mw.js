@@ -9,6 +9,36 @@
  */
 module.exports = function (repo) {
     return (req, res, next) => {
+        res.locals.resultList = [
+            {
+                id: 1,
+                race: '200 m gyorsúszás',
+                winner: {
+                    id: 1,
+                    name: 'Béla',
+                    time: '1:25.012'
+                },
+                loser: {
+                    id: 2,
+                    name: 'János',
+                    time: '1:34.027'
+                }
+            },
+            {
+                id: 2,
+                race: 'Rákjárás az uszoda kertjében',
+                winner: {
+                    id: 2,
+                    name: 'János',
+                    time: '12:01.834'
+                },
+                loser: {
+                    id: 3,
+                    name: 'Jack',
+                    time: '21:48.473'
+                }
+            }
+        ];
         return next();
     };
 }
