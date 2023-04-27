@@ -6,13 +6,14 @@
  * @returns An express middleware function that implements the task detailed above.
  */
 module.exports = function (repo) {
+    const Fish = repo.Fish;
+
     return (req, res, next) => {
-        res.locals.fish = {
-            name: 'Béla',
-            type: 'Tőkehal',
-            weight: '25 kg',
-            length: '74 cm'
-        };
-        return next();
+        Fish.findOne({ _id: req.params.id }, (err, fish) => {
+            if (err) { return next(err); }
+
+            res.locals.fish = fish;
+            next();
+        });
     };
 }

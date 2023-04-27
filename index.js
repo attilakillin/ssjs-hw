@@ -1,8 +1,14 @@
 /* Initialize Express. */
 const express = require('express');
-const app = express();
+const bodyParser = require('body-parser');
 
+/* Initialize DB connection. */
+require('mongoose');
+
+/* Set up application. */
+const app = express();
 app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({ extended: false }));
 
 /* Set routing. As the CSS is served from CDN, no static resource is served. */
 require('./routing/fish.routes')(app);

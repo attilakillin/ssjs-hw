@@ -6,44 +6,46 @@
     <!-- Header row -->
     <h1 class="text-3xl mb-4">Edit fish</h1>
 
-    <!-- Main table listing the properties of a fish -->
-    <table class="table-fixed w-full border-collapse">
-        <tr>
-            <th class="border-b-4 border-indigo-50 px-4 py-4 bg-gray-700 text-indigo-50" scope="row">Nickname</th>
-            <td class="pl-3">
-                <input class="block w-full px-4 py-3 bg-white" type="text"
-                       value="<%= (typeof fish !== 'undefined') ? fish.name : '' %>">
-            </td>
-        </tr>
-        <tr>
-            <th class="border-y-4 border-indigo-50 px-4 py-4 bg-gray-700 text-indigo-50" scope="row">Type</th>
-            <td class="pl-3">
-                <input class="block w-full px-4 py-3 bg-white" type="text"
-                       value="<%= (typeof fish !== 'undefined') ? fish.type : '' %>">
-            </td>
-        </tr>
-        <tr>
-            <th class="border-y-4 border-indigo-50 px-4 py-4 bg-gray-700 text-indigo-50" scope="row">Weight</th>
-            <td class="pl-3">
-                <input class="block w-full px-4 py-3 bg-white" type="text"
-                       value="<%= (typeof fish !== 'undefined') ? fish.weight : '' %>">
-            </td>
-        </tr>
-        <tr>
-            <th class="border-t-4 border-indigo-50 px-4 py-4 bg-gray-700 text-indigo-50" scope="row">Length</th>
-            <td class="pl-3">
-                <input class="block w-full px-4 py-3 bg-white" type="text"
-                       value="<%= (typeof fish !== 'undefined') ? fish.length : '' %>">
-            </td>
-        </tr>
-    </table>
+    <form method="POST">
+        <!-- Main table listing the properties of a fish -->
+        <table class="table-fixed w-full border-collapse">
+            <tr>
+                <th class="border-b-4 border-indigo-50 px-4 py-4 bg-gray-700 text-indigo-50" scope="row">Nickname</th>
+                <td class="pl-3">
+                    <input class="block w-full px-4 py-3 bg-white" type="text" name="name"
+                        value="<%= (typeof fish !== 'undefined') ? fish.name : '' %>" />
+                </td>
+            </tr>
+            <tr>
+                <th class="border-y-4 border-indigo-50 px-4 py-4 bg-gray-700 text-indigo-50" scope="row">Type</th>
+                <td class="pl-3">
+                    <input class="block w-full px-4 py-3 bg-white" type="text" name="type"
+                        value="<%= (typeof fish !== 'undefined') ? fish.type : '' %>" />
+                </td>
+            </tr>
+            <tr>
+                <th class="border-y-4 border-indigo-50 px-4 py-4 bg-gray-700 text-indigo-50" scope="row">Weight</th>
+                <td class="pl-3">
+                    <input class="block w-full px-4 py-3 bg-white" type="text" name="weight"
+                        value="<%= (typeof fish !== 'undefined') ? fish.weight : '' %>" />
+                </td>
+            </tr>
+            <tr>
+                <th class="border-t-4 border-indigo-50 px-4 py-4 bg-gray-700 text-indigo-50" scope="row">Length</th>
+                <td class="pl-3">
+                    <input class="block w-full px-4 py-3 bg-white" type="text" name="length"
+                        value="<%= (typeof fish !== 'undefined') ? fish.length : '' %>" />
+                </td>
+            </tr>
+        </table>
 
 
-    <!-- 'Cancel' and 'Save' buttons below the table -->
-    <div class="flex flex-row justify-end mt-4">
-        <a href="/fish" class="hover:outline hover:outline-3 hover:outline-gray-700 px-8 py-3 mr-4 text-lg">Cancel</a>
-        <button class="hover:outline hover:outline-3 hover:outline-gray-700 px-8 py-3 text-lg">Save</button>
-    </div>
+        <!-- 'Cancel' and 'Save' buttons below the table -->
+        <div class="flex flex-row justify-end mt-4">
+            <a href="/fish" class="hover:outline hover:outline-3 hover:outline-gray-700 px-8 py-3 mr-4 text-lg">Cancel</a>
+            <button type="submit" class="hover:outline hover:outline-3 hover:outline-gray-700 px-8 py-3 text-lg">Save</button>
+        </div>
+    </form>
 </div>
 
 <%- include('components/footer') %>

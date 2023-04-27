@@ -1,3 +1,6 @@
+const Fish = require('../models/fish');
+const Result = require('../models/result');
+
 const deleteOneResult   = require('../middleware/leaderboards/deleteOneResult.mw');
 const loadManyResults   = require('../middleware/leaderboards/loadManyResults.mw');
 const loadOneResult     = require('../middleware/leaderboards/loadOneResult.mw');
@@ -5,7 +8,6 @@ const saveOneResult     = require('../middleware/leaderboards/saveOneResult.mw')
 
 const loadManyFish      = require('../middleware/fish/loadManyFish.mw');
 
-const handleErrors      = require('../middleware/handleErrors.mw');
 const redirect          = require('../middleware/redirect.mw');
 const render            = require('../middleware/render.mw');
 
@@ -14,7 +16,7 @@ const render            = require('../middleware/render.mw');
  * @param {object} app The express app instance to use.
  */
 module.exports = function(app) {
-    const repo = {};
+    const repo = { Fish, Result };
 
     /** Load results list view (with an optional query-based filtering). */
     app.get('/leaderboards', 
@@ -29,27 +31,23 @@ module.exports = function(app) {
     /** Save a new result, and redirect the user. */
     app.post('/leaderboards/new',
         saveOneResult(repo),
-        handleErrors(repo),
         redirect(repo, '/leaderboards'));
 
     /** Load the edit existing result view (populates the editing fields). */
     app.get('/leaderboards/edit/:id',
         loadManyFish(repo),
         loadOneResult(repo),
-        handleErrors(repo),
         render(repo, 'leaderboards-edit'));
 
     /** Update an existing result, and redirect the user. */
     app.post('/leaderboards/edit/:id',
         loadOneResult(repo),
         saveOneResult(repo),
-        handleErrors(repo),
         redirect(repo, '/leaderboards'));
 
     /** Delete an existing result, and redirect the user back. */
     app.get('/leaderboards/delete/:id',
         loadOneResult(repo),
         deleteOneResult(repo),
-        handleErrors(repo),
         redirect(repo, '/leaderboards'));
 }

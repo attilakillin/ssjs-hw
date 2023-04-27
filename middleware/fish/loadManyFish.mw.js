@@ -8,30 +8,16 @@
  * @returns An express middleware function that implements the task detailed above.
  */
 module.exports = function (repo) {
+    const Fish = repo.Fish;
+
     return (req, res, next) => {
-        res.locals.fishList = [
-            {
-                id: 1,
-                name: 'Béla',
-                type: 'Tőkehal',
-                weight: '25 kg',
-                length: '74 cm'
-            },
-            {
-                id: 2,
-                name: 'János',
-                type: 'Guppi',
-                weight: '0.7 kg',
-                length: '6 cm'
-            },
-            {
-                id: 3,
-                name: 'Jack',
-                type: 'Kardszárnyú delfin',
-                weight: '230 kg',
-                length: '2.54 m'
-            }
-        ];
-        return next();
+        const query = (req.query.filter || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+        Fish.find({ name: new RegExp('.*' + query + '.*', 'i') }, (err, fishList) => {
+            if (err) { return next(err); }
+
+            res.locals.fishList = fishList;
+            next();
+        });
     };
 }

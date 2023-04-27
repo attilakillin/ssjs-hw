@@ -7,7 +7,19 @@
  * @returns An express middleware function that implements the task detailed above.
  */
 module.exports = function (repo) {
+    const Fish = repo.Fish;
+
     return (req, res, next) => {
-        return next();
+        const fish = res.locals.fish || new Fish();
+
+        fish.name = req.body.name;
+        fish.type = req.body.type;
+        fish.weight = req.body.weight;
+        fish.length = req.body.length;
+
+        fish.save((err) => {
+            if (err) { return next(err); }
+            next();
+        });
     };
 }
