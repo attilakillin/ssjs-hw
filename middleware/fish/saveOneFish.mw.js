@@ -12,6 +12,7 @@ module.exports = function (repo) {
     return (req, res, next) => {
         const fish = res.locals.fish || new Fish();
 
+        // TODO Check validity
         fish.name = req.body.name;
         fish.type = req.body.type;
         fish.weight = req.body.weight;

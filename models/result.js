@@ -7,7 +7,7 @@ const Result = db.model('Result', {
         ref: 'Fish'
     },
     winnerTime: String,
-    loser: {
+    _loser: {
         type: db.Schema.Types.ObjectId,
         ref: 'Fish'
     },

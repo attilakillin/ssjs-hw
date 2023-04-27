@@ -7,7 +7,21 @@
  * @returns An express middleware function that implements the task detailed above.
  */
 module.exports = function (repo) {
+    const Result = repo.Result;
+
     return (req, res, next) => {
-        return next();
+        const result = res.locals.result || new Result();
+
+        // TODO Check validity
+        result.race = req.body.race;
+        result.winnerTime = req.body.winnerTime;
+        result._winner = req.body.winnerId; 
+        result.loserTime = req.body.loserTime;
+        result._loser = req.body.loserId;
+
+        result.save((err) => {
+            if (err) { return next(err); }
+            next();
+        });
     };
 }

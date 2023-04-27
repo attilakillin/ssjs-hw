@@ -1,4 +1,4 @@
-<%# Used templating variables: resultList %>
+<%# Used templating variables: resultList, query? %>
 <%- include('components/header', {active: 'leaderboards'}) %>
 
 <!-- Main content -->
@@ -6,10 +6,14 @@
     <!-- Header row -->
     <div class="flex flex-row mb-4">
         <h1 class="basis-3/4 text-3xl">Leaderboards</h1>
-        <div class="basis-1/4 flex">
-            <input class="text-lg placeholder:italic placeholder:text-gray-400 border border-gray-300 px-2" type="text" placeholder="Enter text...">
-            <button class="bg-gray-700 text-indigo-50 hover:outline hover:outline-3 hover:outline-gray-700 px-8 py-1 text-lg">Filter</button>
-        </div>
+        
+        <form method="GET">
+            <div class="basis-1/4 flex">
+                <input class="text-lg placeholder:italic placeholder:text-gray-400 border border-gray-300 px-2" type="text" name="filter"
+                       placeholder="Enter text..." value="<%= (typeof query !== 'undefined') ? query.filter : '' %>" />
+                <button type="submit" class="bg-gray-700 text-indigo-50 hover:outline hover:outline-3 hover:outline-gray-700 px-8 py-1 text-lg">Filter</button>
+            </div>
+        </form>
     </div>
 
 
@@ -28,12 +32,12 @@
             <% resultList.forEach(r => { %>
                 <tr class="border-b border-gray-700 hover:bg-indigo-100">
                     <td class="px-4 py-4"><%= r.race %></td>
-                    <td class="px-4 py-4"><%= r.winner.name %></td>
-                    <td class="px-4 py-4"><%= r.winner.time %></td>
-                    <td class="px-4 py-4"><%= r.loser.name %></td>
+                    <td class="px-4 py-4"><%= r._winner.name %></td>
+                    <td class="px-4 py-4"><%= r.winnerTime %></td>
+                    <td class="px-4 py-4"><%= r._loser.name %></td>
                     <td class="px-4 py-4">
                         <div class="flex">
-                            <div class="flex-grow"><%= r.loser.time %></div>
+                            <div class="flex-grow"><%= r.loserTime %></div>
                             <a href="/leaderboards/edit/<%= r.id %>" class="mx-2">
                                 <i class="text-gray-700 fa fa-pen"></i>
                             </a>

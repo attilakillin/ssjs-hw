@@ -6,7 +6,12 @@
  * @returns An express middleware function that implements the task detailed above.
  */
 module.exports = function (repo) {
+    const Result = repo.Result;
+
     return (req, res, next) => {
-        return next();
+        Result.deleteOne({ _id: req.params.id }, (err) => {
+            if (err) { return next(err); }
+            next();
+        });
     };
 }
