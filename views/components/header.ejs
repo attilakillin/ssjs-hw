@@ -24,9 +24,12 @@
                 <% if (active == 'fish') { %>
                     <a href="/fish"         class="bg-gray-700 text-indigo-50 hover:outline hover:outline-3 hover:outline-gray-700 px-8 py-3 text-lg">Fish</a>
                     <a href="/leaderboards" class="hover:outline hover:outline-3 hover:outline-gray-700 px-8 py-3 text-lg">Leaderboards</a>
-                <% } else { %>
+                <% } else if (active == 'leaderboards') { %>
                     <a href="/fish"         class="hover:outline hover:outline-3 hover:outline-gray-700 px-8 py-3 text-lg">Fish</a>
                     <a href="/leaderboards" class="bg-gray-700 text-indigo-50 hover:outline hover:outline-3 hover:outline-gray-700 px-8 py-3 text-lg">Leaderboards</a>
+                <% } else { %>
+                    <a href="/fish"         class="hover:outline hover:outline-3 hover:outline-gray-700 px-8 py-3 text-lg">Fish</a>
+                    <a href="/leaderboards" class="hover:outline hover:outline-3 hover:outline-gray-700 px-8 py-3 text-lg">Leaderboards</a>
                 <% } %>
             </div>
             <div class="text-lg italic">

@@ -9,9 +9,9 @@ module.exports = function (repo) {
     const Result = repo.Result;
 
     return (req, res, next) => {
-        Result.deleteOne({ _id: req.params.id }, (err) => {
+        return Result.deleteOne({ _id: req.params.id }, (err) => {
             if (err) { return next(err); }
-            next();
+            return next();
         });
     };
 }

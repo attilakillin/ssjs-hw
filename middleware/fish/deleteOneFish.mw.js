@@ -9,9 +9,9 @@ module.exports = function (repo) {
     const Fish = repo.Fish;
 
     return (req, res, next) => {
-        Fish.deleteOne({ _id: req.params.id }, (err) => {
+        return Fish.deleteOne({ _id: req.params.id }, (err) => {
             if (err) { return next(err); }
-            next();
+            return next();
         });
     };
 }

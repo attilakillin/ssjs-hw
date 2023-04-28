@@ -13,11 +13,11 @@ module.exports = function (repo) {
     return (req, res, next) => {
         const query = (req.query.filter || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-        Fish.find({ name: new RegExp('.*' + query + '.*', 'i') }, (err, fishList) => {
+        return Fish.find({ name: new RegExp('.*' + query + '.*', 'i') }, (err, fishList) => {
             if (err) { return next(err); }
 
             res.locals.fishList = fishList;
-            next();
+            return next();
         });
     };
 }

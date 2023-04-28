@@ -5,15 +5,14 @@
  * 
  * This method only terminates the middleware chain if an error occurred before. If no error occurred,
  * nothing is done, and next() is called as expected.
- * @param {object} repo Shared object repository.
  * @returns An express middleware function that implements the task detailed above.
  */
-module.exports = function (repo) {
-    return (req, res, next) => {
-        if (typeof res.errors !== 'undefined') {
-            return res.render('to be defined');
-        } else {
+module.exports = function () {
+    return (err, req, res, next) => {
+        if (typeof err === 'undefined' || !err) {
             return next();
         }
+        
+        return res.render('error.ejs');
     };
 }

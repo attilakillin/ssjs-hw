@@ -10,7 +10,7 @@
         <form method="GET">
             <div class="basis-1/4 flex">
                 <input class="text-lg placeholder:italic placeholder:text-gray-400 border border-gray-300 px-2" type="text" name="filter"
-                       placeholder="Enter text..." value="<%= (typeof query !== 'undefined') ? query.filter : '' %>" />
+                       placeholder="Enter text..." value="<%= (typeof query !== 'undefined' && typeof query.filter !== 'undefined') ? query.filter : '' %>" />
                 <button type="submit" class="bg-gray-700 text-indigo-50 hover:outline hover:outline-3 hover:outline-gray-700 px-8 py-1 text-lg">Filter</button>
             </div>
         </form>
@@ -31,13 +31,25 @@
         <tbody>
             <% resultList.forEach(r => { %>
                 <tr class="border-b border-gray-700 hover:bg-indigo-100">
-                    <td class="px-4 py-4"><%= r.race %></td>
-                    <td class="px-4 py-4"><%= r._winner.name %></td>
-                    <td class="px-4 py-4"><%= r.winnerTime %></td>
-                    <td class="px-4 py-4"><%= r._loser.name %></td>
+                    <td class="px-4 py-4"><%= (typeof r.race !== 'undefined') ? r.race : '' %></td>
+                    <td class="px-4 py-4">
+                        <% if (typeof r._winner !== 'undefined' && !r._winner) { %>
+                            <span class='italic'>-Nonexistent fish-</span>
+                        <% } else { %>
+                            <%= (typeof r._winner !== 'undefined') ? r._winner.name : '' %>
+                        <% } %>
+                     </td>
+                    <td class="px-4 py-4"><%= (typeof r.winnerTime !== 'undefined') ? r.winnerTime : '' %></td>
+                    <td class="px-4 py-4">
+                        <% if (typeof r._loser !== 'undefined' && !r._loser) { %>
+                            <span class='italic'>-Nonexistent fish-</span>
+                        <% } else { %>
+                            <%= (typeof r._loser !== 'undefined') ? r._loser.name : '' %>
+                        <% } %>
+                    </td>
                     <td class="px-4 py-4">
                         <div class="flex">
-                            <div class="flex-grow"><%= r.loserTime %></div>
+                            <div class="flex-grow"><%= (typeof r.loserTime !== 'undefined') ? r.loserTime : '' %></div>
                             <a href="/leaderboards/edit/<%= r.id %>" class="mx-2">
                                 <i class="text-gray-700 fa fa-pen"></i>
                             </a>

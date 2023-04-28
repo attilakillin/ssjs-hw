@@ -13,13 +13,13 @@ module.exports = function (repo) {
     return (req, res, next) => {
         const query = (req.query.filter || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-        Result.find({ race: new RegExp('.*' + query + '.*', 'i') })
+        return Result.find({ race: new RegExp('.*' + query + '.*', 'i') })
             .populate(['_winner', '_loser'])
             .exec((err, resultList) => {
                 if (err) { return next(err); }
 
                 res.locals.resultList = resultList;
-                next();
+                return next();
             });
     };
 }
